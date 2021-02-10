@@ -1,0 +1,65 @@
+{
+	"name": "WikiUserInfo",
+	"version": "0.5.2",
+	"author": [
+		"Michael P. Dubner",
+		"WikiTeq"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:WikiUserInfo",
+	"descriptionmsg": "wikiuserinfo-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.35.0",
+		"platform": {
+			"php": ">=7.2.0"
+		}
+	},
+	"AutoloadClasses": {
+		"WikiUserInfo\\WikiUserInfoHooks": "WikiUserInfoHooks.php",
+		"WikiUserInfo\\WikiUserInfo": "WikiUserInfo.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "WikiUserInfo\\WikiUserInfoHooks::onParserFirstCallInit"
+	},
+	"config": {
+		"WikiUserInfoSafeOptions": {
+			"value": [
+				"date",
+				"gender",
+				"language",
+				"nickname",
+				"skin",
+				"timecorrection"
+			],
+			"merge_strategy": "array_plus_2d"
+		}
+	},
+	"MessagesDirs": {
+		"WikiUserInfo": [
+			"i18n"
+		]
+	},
+	"AvailableRights": [
+		"showuseroption",
+		"showuseremail"
+	],
+	"GroupPermissions": {
+		"*": {
+			"showuseroption": false,
+			"showuseremail": false
+		},
+		"sysop": {
+			"showuseroption": true,
+			"showuseremail": true
+		},
+		"bureaucrat": {
+			"showuseroption": true,
+			"showuseremail": true
+		}
+	},
+	"ExtensionMessagesFiles": {
+		"WikiUserInfoMagic": "WikiUserInfo.i18n.magic.php"
+	},
+	"manifest_version": 2
+}
